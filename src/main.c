@@ -1,7 +1,11 @@
 #include <stdio.h>
+#include "rom.h"
 
-int main(int argc, char *argv[])
+int main(void)
 {
 	printf("Hello World, casual\n");
+	load_rom();
+
 	return 0;
 }
+

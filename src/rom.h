@@ -1,0 +1,1 @@
+extern void load_rom(void);
