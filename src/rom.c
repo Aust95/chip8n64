@@ -1,9 +1,15 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+
+extern uint8_t cpu_memory[4096];
 
 void load_rom(void)
 {
-	printf("LOAD ROM: TODO IMPLEMENTATION\n");
 
+
+	printf("LOAD ROM: TODO IMPLEMENTATION\n");
+	 printf("Value of multiple+1:%p\n", cpu_memory+512);
 	/*
 	 * Primeiro chamamos fopen e passamos os 2 argumentos que a função pede
 	 * como esclarecidos na sua documentação.
@@ -12,7 +18,7 @@ void load_rom(void)
 	 * queremos apenas ler o arquivo e não escrever nele.
 	 */
 
-	FILE* romfile = fopen("rom.ch8", "r");
+	FILE* romfile = fopen("BRIX", "r");
 
 	/*
 	 * A função fopen nos retornou um ponteiro para um tipo FILE
@@ -22,15 +28,12 @@ void load_rom(void)
 		puts("Couldn't open file...");
 		return;
 	}
-
-
 	/*
 	 * Criamos um buffer de 512 bytes na area STACK da memória e inicializamos com 0.
 	 * será nosso buffer para guardar temporariamente os dados do arquivo
 	 */
 
 	char buffer[512] = { 0 };
-
 	/*
 	 * Agora usamos fgets passando 3 argumentos que ela pede,
 	 * como esclarecidos na documentação dela
@@ -44,6 +47,8 @@ void load_rom(void)
 	 * O terceiro argument 'stream' é o ponteiro para FILE aberto por fopen, passamos nosso romfile
 	 */
 	fgets(&buffer[0], sizeof(buffer), romfile);
+
+	//size_t fread(void *cpu_memory[512], size_t 1, size_t 280, FILE *romfile);
 
 	/*
 	 * Neste ponto já não precisamos mais do arquivo aberto para leitura,
