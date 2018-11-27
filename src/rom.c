@@ -9,7 +9,8 @@ void load_rom(void)
 
 
 	printf("LOAD ROM: TODO IMPLEMENTATION\n");
-	 printf("Value of multiple+1:%p\n", cpu_memory+512);
+	int i;
+
 	/*
 	 * Primeiro chamamos fopen e passamos os 2 argumentos que a função pede
 	 * como esclarecidos na sua documentação.
@@ -33,28 +34,16 @@ void load_rom(void)
 	 * será nosso buffer para guardar temporariamente os dados do arquivo
 	 */
 
-	char buffer[512] = { 0 };
-	/*
-	 * Agora usamos fgets passando 3 argumentos que ela pede,
-	 * como esclarecidos na documentação dela
-	 * O primeiro argumento '*s' é um ponteiro para uma area de memória que ele pode usar para escrever
-	 * os dados que vai ler do arquivo, passamos o endereço do primeiro byte em buffer
-	 *
-	 * O segundo argumento 'n' é o tamanho máximo de bytes que ele deve ler do arquivo, usamos o 
-	 * operador sizeof e passamos o array buffer pra ele, o sizeof consegue dizer o tamanho em bytes
-	 * da variável
-	 *
-	 * O terceiro argument 'stream' é o ponteiro para FILE aberto por fopen, passamos nosso romfile
-	 */
-	fgets(&buffer[0], sizeof(buffer), romfile);
-
-	//size_t fread(void *cpu_memory[512], size_t 1, size_t 280, FILE *romfile);
+	fread(&cpu_memory[0x200], 1, 280, romfile);
 
 	/*
 	 * Neste ponto já não precisamos mais do arquivo aberto para leitura,
 	 * podemos fechá-lo. a função fclose vai fechar o arquivo e liberar 
 	 * qualquer memória que fora alocada por fopen 
 	 */
+	for(i = 512;i < 512 + 280;i++) {
+    printf("%d:%.2x\n", i, (unsigned int) cpu_memory[i]);
+	}
 
 	fclose(romfile);
 
@@ -66,6 +55,5 @@ void load_rom(void)
 	 * ele vai printar no terminal o conteudo do arquivo que lemos 
 	 * e parar pq o resto será zeros
 	 */
-	puts(&buffer[0]);
 	
 }

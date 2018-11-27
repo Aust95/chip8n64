@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
 
 static uint16_t stack[16];
 uint8_t cpu_memory[1024 * 4]; //uint_t = unsigned int of 8 bits
@@ -19,7 +20,7 @@ struct registers registers;
 
 void cpu_reset(){
 	memset(&registers, 0, sizeof(struct registers));
-	register.pc = 0x200;
+	registers.program_counter = 0x200;
 }
 
 void cpu_step(){
