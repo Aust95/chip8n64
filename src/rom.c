@@ -20,7 +20,7 @@ void load_rom(void)
 	fread(&cpu_memory[0x200], 1, 280, romfile);
 
 	for(i = 512;i < 512 + 280;i++) {
-    	printf("%d:%.2x\n", i, (unsigned int) cpu_memory[i]);
+		printf("%d:%.2x\n", i, (unsigned int) cpu_memory[i]);
 	}
 
 	fclose(romfile);	
