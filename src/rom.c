@@ -1,8 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>//arquivos de cabeçalho 
+#include "cpu.h"
 
-extern uint8_t cpu_memory[4096];//da acesso a respectiva variavel, vinda de cpu.c
+/*
+ * usando extern informamos pro compilador que existe um array
+ * com nome de cpu_memory e tamanho definido em CHIP8_CPU_MEMORY_SIZE
+ * e queremos manipulá-lo
+ */
+extern uint8_t cpu_memory[CHIP8_CPU_MEMORY_SIZE]; 
 
 void load_rom(void)
 {
