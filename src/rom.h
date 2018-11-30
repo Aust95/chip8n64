@@ -1,1 +1,1 @@
-extern void load_rom(void);
+extern  load_rom(const char *filename);
