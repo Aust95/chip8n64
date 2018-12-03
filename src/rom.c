@@ -20,7 +20,7 @@ int load_rom(const char *filename)
 	if (romfile == NULL) {
 		puts("Couldn't open file...");/*caso não seja possivel abrir arquivo a menssagem será exibida na saida*/
 		
-		return 0;
+		return 1;
 	}
 
 	fseek(romfile, 0, SEEK_END);

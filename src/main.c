@@ -10,10 +10,9 @@ int main(int argc, char *argv[])
 	}
 
 	printf("Hello World, casual\n");
-	load_rom(argv[1]);/*chama a função load_rom*/
-	if (load_rom(argv[1]) == 1) {
-		EXIT_FAILURE;
-	}
-	
+
+	if (load_rom(argv[1]) == 1) 
+		return EXIT_FAILURE;
+		
 	return 0;
 }
