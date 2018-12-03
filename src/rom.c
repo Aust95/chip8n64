@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdint.h>/*arquivos de cabeçalho*/ 
 #include "cpu.h"
+#include "rom.h"
 
 /*
  * usando extern informamos pro compilador que existe um array
@@ -10,7 +11,7 @@
  */
 extern uint8_t cpu_memory[CHIP8_CPU_MEMORY_SIZE]; 
 
-int load_rom(const char *filename)
+bool load_rom(const char *filename)
 {
 	int i;
 	long size;
@@ -41,5 +42,5 @@ int load_rom(const char *filename)
 
 	fclose(romfile);/*fecha o arquivo especificado no argumento, o arquivo esta no ponteiro *romfile*/	
 
-	return 0;
+	return false;
 }
