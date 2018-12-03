@@ -11,8 +11,8 @@ int main(int argc, char *argv[])
 
 	printf("Hello World, casual\n");
 
-	if (load_rom(argv[1]) == 1) 
-		return EXIT_FAILURE;
+	if (load_rom(argv[1]) == true) 
+		return 1;
 		
 	return 0;
 }

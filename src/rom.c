@@ -21,7 +21,7 @@ bool load_rom(const char *filename)
 	if (romfile == NULL) {
 		puts("Couldn't open file...");/*caso não seja possivel abrir arquivo a menssagem será exibida na saida*/
 		
-		return 1;
+		return false;
 	}
 
 	fseek(romfile, 0, SEEK_END);
@@ -31,7 +31,7 @@ bool load_rom(const char *filename)
 	if (size > (CHIP8_CPU_MEMORY_SIZE - 512)) {
 		printf("File exceeds in size, max size is 3584 bytes\n");
 
-		return 1;
+		return false;
 	}
 
 	fread(&cpu_memory[0x200], 1, size, romfile);/*(primeiro argumento determina o endereço inicial, terceiro argumento:tamanho em bits do arquivo a ser lido,quarto argumento:variavel que foi usada para declarar o ponteiro *romfile*/
@@ -42,5 +42,5 @@ bool load_rom(const char *filename)
 
 	fclose(romfile);/*fecha o arquivo especificado no argumento, o arquivo esta no ponteiro *romfile*/	
 
-	return false;
+	return true;
 }
