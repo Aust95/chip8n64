@@ -36,10 +36,6 @@ bool load_rom(const char *filename)
 
 	fread(&cpu_memory[0x200], 1, size, romfile);/*(primeiro argumento determina o endereço inicial, terceiro argumento:tamanho em bits do arquivo a ser lido,quarto argumento:variavel que foi usada para declarar o ponteiro *romfile*/
 
-	for(i = 512;i < 512 + 280;i++) {/*esse loop serve para que possa ser mostrado na saida,o conteudo de cada endereço de memoria onde houveram informaçoes armazenadas*/
-		printf("%d:%.2x\n", i, (unsigned int) cpu_memory[i]);
-	}
-
 	fclose(romfile);/*fecha o arquivo especificado no argumento, o arquivo esta no ponteiro *romfile*/	
 
 	return true;

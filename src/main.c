@@ -14,5 +14,5 @@ int main(int argc, char *argv[])
 	if (load_rom(argv[1]) == false) 
 		return EXIT_FAILURE;
 		
-	return 0;
+	return EXIT_SUCCESS;
 }
