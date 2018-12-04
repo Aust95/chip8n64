@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
 	if (argc < 2) {
 		fprintf(stderr, "Usage: %s [rom name]\n", argv[0]);
-			return EXIT_FAILURE;
+		return EXIT_FAILURE;
 	}
 
 	printf("Hello World, casual\n");
