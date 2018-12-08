@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
 		return EXIT_FAILURE;
 
 	cpu_reset();
-
 	cpu_step();
 	cpu_step();
 	cpu_step();

@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include "cpu.h"
 
-
-
 /* Declara layout de memória do tipo struct registers */
 struct registers {
 	/*
@@ -23,7 +21,6 @@ struct registers {
     uint8_t stack_pointer;
 };
 
-
 /*
  * criamos um array de uint8_t (unsigned int de 8 bits / 1 byte)
  * com tamanho definido em CHIP8_CPU_MEMORY_SIZE.
@@ -31,17 +28,8 @@ struct registers {
  */
 uint8_t cpu_memory[CHIP8_CPU_MEMORY_SIZE];
 
-
-/* 
- * criamos um array de uint16_t (unsigned int de 16 bits / 2 bytes) com tamanho 16 = total de 32 bytes
- * declaramos como static pois será manipulado apenas neste módulo
- */
-static uint16_t stack[16];
-
-
 /* cria variável registers do tipo struct registers, como static pois será manipulada apenas neste módulo */
 static struct registers registers;
-
 
 /* DEFINE função cpu_reset */
 void cpu_reset()
@@ -68,22 +56,21 @@ void cpu_step()
 	++registers.program_counter; /* incrementa pc*/
 	op_b2 = cpu_memory[registers.program_counter]; /* pega segundo byte*/
 	++registers.program_counter; /* incrementa pc*/
-
 	opcode = (op_b2<<8) | (op_b1); /* junta os 2 bytes em uma variável de 2 bytes*/
 
 	printf("OPCODE: $%.4X\n", opcode); /* printa o opcode*/
 
-    if (opcode == 0x00E0) {
-        printf("OPCODE = CLS\n");
-    } else if (opcode == 0x00EE) {
-        printf("OPCODE = RET\n");
-    } else  if ((opcode&0xF000) == 0) {
-        printf("OPCODE SYS ADDR\n");
-    } else  if ((opcode&0xF000) == 0x1000) {
-        printf("OPCODE JP ADDR\n");
-    } else  if ((opcode&0xF000) == 0x2000) {
-        printf("OPCODE  CALL ADDR\n");
-    } else {
-        printf("UNKNOWN OPCODE = $ %.4x\n", opcode);
-    }
+	if (opcode == 0x00E0) {
+		printf("OPCODE = CLS\n");
+	} else if (opcode == 0x00EE) {
+		printf("OPCODE = RET\n");
+	} else  if ((opcode&0xF000) == 0) {
+		printf("OPCODE SYS ADDR\n");
+	} else  if ((opcode&0xF000) == 0x1000) {
+		printf("OPCODE JP ADDR\n");
+	} else  if ((opcode&0xF000) == 0x2000) {
+		printf("OPCODE  CALL ADDR\n");
+	} else {
+		printf("UNKNOWN OPCODE = $ %.4x\n", opcode);
+	}
 }

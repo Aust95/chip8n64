@@ -13,7 +13,6 @@ extern uint8_t cpu_memory[CHIP8_CPU_MEMORY_SIZE];
 
 bool load_rom(const char *filename)
 {
-	int i;
 	long size;
 		
 	FILE* romfile = fopen(filename, "r");/* declara ponteiro do tipo FILE, chamado romfile.argumentos na ordem:caminho do arquivo a ser aberto, modo, no caso abre arquivo para leitura.*/
