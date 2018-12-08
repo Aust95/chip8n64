@@ -31,6 +31,8 @@ bool load_rom(const char *filename)
 	if (size > (CHIP8_CPU_MEMORY_SIZE - 512)) {
 		printf("File exceeds in size, max size is 3584 bytes\n");
 
+		fclose(romfile);
+		
 		return false;
 	}
 
