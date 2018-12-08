@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
+#include <stdio.h>
 #include "cpu.h"
 
 
@@ -59,5 +60,30 @@ void cpu_reset()
 /* DEFINE função cpu_step */
 void cpu_step()
 {
+	uint8_t op_b2;
+	uint8_t op_b1;
+	uint16_t opcode;
+	
+	op_b1 = cpu_memory[registers.program_counter]; /* pega primeiro byte*/
+	++registers.program_counter; /* incrementa pc*/
+	op_b2 = cpu_memory[registers.program_counter]; /* pega segundo byte*/
+	++registers.program_counter; /* incrementa pc*/
 
+	opcode = (op_b2<<8) | (op_b1); /* junta os 2 bytes em uma variável de 2 bytes*/
+
+	printf("OPCODE: $%.4X\n", opcode); /* printa o opcode*/
+
+    if (opcode == 0x00E0) {
+        printf("OPCODE = CLS\n");
+    } else if (opcode == 0x00EE) {
+        printf("OPCODE = RET\n");
+    } else  if ((opcode&0xF000) == 0) {
+        printf("OPCODE SYS ADDR\n");
+    } else  if ((opcode&0xF000) == 0x1000) {
+        printf("OPCODE JP ADDR\n");
+    } else  if ((opcode&0xF000) == 0x2000) {
+        printf("OPCODE  CALL ADDR\n");
+    } else {
+        printf("UNKNOWN OPCODE = $ %.4x\n", opcode);
+    }
 }
