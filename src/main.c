@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
 	if (load_rom(argv[1]) == false) 
 		return EXIT_FAILURE;
 
+	cpu_reset();
+
 	cpu_step();
 	cpu_step();
 	cpu_step();
