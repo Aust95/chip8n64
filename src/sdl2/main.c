@@ -41,6 +41,7 @@ static bool platform_init()
 
 	if (tex == 0) {
 		printf("Could not create texture");
+		SDL_DestroyTexture(tex);
 		SDL_DestroyRenderer(rend);
 		SDL_DestroyWindow(win);
 		SDL_Quit();
@@ -49,8 +50,21 @@ static bool platform_init()
 	}	
 }
 
+static void platform_end (void) 
+{
+	if (tex != NULL)
+		SDL_DestroyTexture(tex);
+	if (rend != NULL)
+		SDL_DestroyRenderer(rend);
+	if (rend != NULL)
+		SDL_DestroyWindow(win);
+	SDL_Quit();
+}
+
 int main(int argc, char *argv[])
 {
+	atexit(platform_end);
+
 	if (argc < 2) {
 		fprintf(stderr, "Usage: %s [rom name]\n", argv[0]);
 		return EXIT_FAILURE;
