@@ -3,9 +3,9 @@
 #include "rom.h"
 #include <SDL2/SDL.h>
 
-	SDL_Window *win;
-	SDL_Renderer *rend;
-	SDL_Texture *tex;
+SDL_Window *win;
+SDL_Renderer *rend;
+SDL_Texture *tex;
 
 static bool platform_init() 
 {
