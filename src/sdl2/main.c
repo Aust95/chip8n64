@@ -7,7 +7,8 @@
 	SDL_Renderer *rend;
 	SDL_Texture *tex;
 
-static bool platform_init() {
+static bool platform_init() 
+{
 	uint32_t render_flags;
 
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) < 0) {
@@ -45,9 +46,7 @@ static bool platform_init() {
 		SDL_Quit();
 
 		return false;
-	}
-
-	
+	}	
 }
 
 int main(int argc, char *argv[])
